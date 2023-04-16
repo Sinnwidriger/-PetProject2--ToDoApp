@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:views="clr-namespace:ToDoApp.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ToDoApp.Views.TaskListView">
+	<StackPanel Classes="container">
+		<Border Classes="task-list-border">
+			<DockPanel>
+				<CheckBox IsEnabled="False" DockPanel.Dock="Left" />
+				<Button CornerRadius="0" Command="{Binding AddNewTaskCommand}" DockPanel.Dock="Right" Content="Add" />
+				<TextBox Text="{Binding NewTaskName}" Watermark="Type the title of task..." />
+			</DockPanel>
+		</Border>
+
+		<Expander Margin="20" Header="Uncompleted" IsExpanded="True">
+			<!-- Uncompleted Task List-->
+			<ItemsControl Items="{Binding UncompletedTasks}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<views:TaskItemView />
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</Expander>
+
+		<Expander Margin="20" IsExpanded="True" Header="Completed">
+			<!-- Completed Task List-->
+			<ItemsControl Items="{Binding CompletedTasks}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<views:TaskItemView />
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</Expander>
+	</StackPanel>
+</UserControl>
